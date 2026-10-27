@@ -1,98 +1,161 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Image, StyleSheet, Text, TouchableOpacity, View, FlatList, ScrollView } from "react-native";
+import logo from "../../assets/images/logo-dinodex.png";
+import carnivoro from "../../assets/images/carnivoro.png";
+import herbivoro from "../../assets/images/herbivoro.png";
+import todos from "../../assets/images/todos.png";
+import { Link } from "expo-router";
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
-
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
+export default function Index() {
   return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Image source={logo} style={styles.logo} />
+      </View>
 
-export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
 
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
+      <Link href={"/carnivoros"} asChild>
+        <View style={styles.containerCarnivoro}>
+          <View style={styles.carnivoroCard}>
+            <Image source={carnivoro} style={styles.dinoImage} />
+          </View>
 
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
+          <View style={styles.dinoText}>
+            <Text style={styles.titulo}>Carnivoros</Text>
+            <Text style={styles.subtitulo}>Os dinossauros carnívoros eram predadores bípedes e velozes com dentes serrilhados, garras afiadas e sentidos apurados para caçar.</Text>
+          </View>
+        </View>
+      </Link>
 
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+      <Link href={"/herbivoros"} asChild>
+        <View style={styles.containerHerb}>
+          <View style={styles.herbCard}>
+            <Image source={herbivoro} style={styles.dinoImage} />
+          </View>
+
+          <View style={styles.dinoText}>
+            <Text style={styles.titulo}>Herbivoros</Text>
+            <Text style={styles.subtitulo}>Os dinossauros herbívoros eram animais com dentes trituradores, bicos córneos e defesas como chifres, armaduras ou pescoços longos para comer plantas.</Text>
+          </View>
+        </View>
+      </Link>
+
+      <Link href={"/todos"} asChild>
+        <View style={styles.containerTodos}>
+          <View style={styles.todosCard}>
+            <Image source={todos} style={styles.dinoImageTodos} />
+          </View>
+
+          <View style={styles.dinoTextTodos}>
+            <Text style={styles.titulo}>Todos</Text>
+            <Text style={styles.subtitulo}>Os dinossauros eram répteis bípedes ou quadrúpedes divididos entre carnívoros predadores com dentes e garras afiadas e herbívoros adaptados com armaduras, chifres ou pescoços longos para comer plantas.</Text>
+          </View>
+        </View>
+      </Link>
+
+    </ScrollView>
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "#0F1711",
+  },
+
+  header: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+    marginBottom: 20
+  },
+
+  logo: {
+    height: 150,
+    width: 200,
+  },
+
+  containerCarnivoro: {
+    flexDirection: "row",
+    marginTop: 50,
+    alignContent: "space-between"
+  },
+
+  containerHerb: {
+    flexDirection: "row-reverse",
+    marginTop: 50,
+    alignContent: "space-between"
+  },
+
+  carnivoroCard: {
+    backgroundColor: "#294B29",
+    width: 115,
+    height: 60,
+    padding: 10,
+    borderRadius: 5,
+    margin: 10,
+    marginTop: 25,
+    flexDirection: "column-reverse",
+  },
+
+  containerTodos: {
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: 50
+  },
+
+  todosCard: {
+    backgroundColor: "#294B29",
+    width: 200,
+    height: 60,
+    padding: 10,
+    borderRadius: 5,
+    margin: 10,
+    marginTop: 25,
+    flexDirection: "column-reverse",
+    alignItems: "center"
+  },
+
+  herbCard: {
+    backgroundColor: "#294B29",
+    width: 115,
+    height: 60,
+    padding: 10,
+    borderRadius: 5,
+    margin: 10,
+    marginTop: 25,
+    flexDirection: "column-reverse",
+  },
+
+  dinoImage: {
+    height: 110,
+    width: 100,
+    margin: 0
+  },
+
+  dinoText: {
     flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
+    marginLeft: 15
   },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
+
+  titulo: {
+    color: "#CBB071",
+    fontSize: 20,
+    textDecorationLine: "underline",
+    marginBottom: 5
   },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+
+  subtitulo: {
+    color: "#E5D9C3",
+    fontSize: 10
   },
-  title: {
-    textAlign: 'center',
+
+  dinoImageTodos: {
+    height: 250,
+    width: 220
   },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
-  },
+
+  dinoTextTodos:{
+    alignItems: "center",
+    marginLeft: 15,
+  }
 });
