@@ -52,7 +52,7 @@ export default function Index() {
           
 
           <View style={styles.dinoTextTodos}>
-            <Text style={styles.titulo}>TODOS</Text>
+            <Text style={styles.titulo}>GERAL</Text>
             <Text style={styles.subtitulo}>Os dinossauros eram répteis bípedes ou quadrúpedes divididos entre carnívoros predadores com dentes e garras afiadas e herbívoros adaptados com armaduras, chifres ou pescoços longos para comer plantas.</Text>
           </View>
 

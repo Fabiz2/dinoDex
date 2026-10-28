@@ -41,7 +41,7 @@ const router = useRouter()
                 </Link>
 
                 <Text style={styles.titulo}>
-                    Herbivoros
+                    Geral
                 </Text>
             </View>
 
