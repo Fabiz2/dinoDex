@@ -20,7 +20,7 @@ export default function Index() {
           </View>
 
           <View style={styles.dinoText}>
-            <Text style={styles.titulo}>Carnivoros</Text>
+            <Text style={styles.titulo}>CARNIVOROS</Text>
             <Text style={styles.subtitulo}>Os dinossauros carnívoros eram predadores bípedes e velozes com dentes serrilhados, garras afiadas e sentidos apurados para caçar.</Text>
           </View>
         </View>
@@ -33,7 +33,7 @@ export default function Index() {
           </View>
 
           <View style={styles.dinoText}>
-            <Text style={styles.titulo}>Herbivoros</Text>
+            <Text style={styles.titulo}>HERBIVOROS</Text>
             <Text style={styles.subtitulo}>Os dinossauros herbívoros eram animais com dentes trituradores, bicos córneos e defesas como chifres, armaduras ou pescoços longos para comer plantas.</Text>
           </View>
         </View>
@@ -46,7 +46,7 @@ export default function Index() {
           </View>
 
           <View style={styles.dinoTextTodos}>
-            <Text style={styles.titulo}>Todos</Text>
+            <Text style={styles.titulo}>TODOS</Text>
             <Text style={styles.subtitulo}>Os dinossauros eram répteis bípedes ou quadrúpedes divididos entre carnívoros predadores com dentes e garras afiadas e herbívoros adaptados com armaduras, chifres ou pescoços longos para comer plantas.</Text>
           </View>
         </View>
