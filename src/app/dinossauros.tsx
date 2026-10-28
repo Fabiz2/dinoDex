@@ -1,7 +1,8 @@
 import {BuscarDinossauros} from "../api/get-dinossauros";
+import { Text, View, StyleSheet, FlatList, TouchableOpacity, Image, ActivityIndicator, ScrollView } from "react-native";
+import logo from "../../assets/images/logo-dinodex.png";
+import { Link, useRouter } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "expo-router";
-import { Text, View, StyleSheet, FlatList, TouchableOpacity, Image, ActivityIndicator, ScrollView, } from "react-native";
 
 
 export default function dinossauros() {
@@ -15,7 +16,7 @@ const router = useRouter()
 
     if (isLoading) {
         return (
-            <View style={style.centro}>
+            <View style={styles.centro}>
                 <ActivityIndicator />
                 <Text>Carregando dinossauros...</Text>
             </View>
@@ -24,100 +25,119 @@ const router = useRouter()
 
     if (isError) {
         return (
-            <View style={style.centro}>
+            <View style={styles.centro}>
                 <Text>Ops! Erro ao carregar dinossauros!</Text>
             </View>
         )
     }
 
     
-      return (
-        
-           <ScrollView>
+    return (
+        <ScrollView style={styles.container}>
+
+            <View style={styles.header}>
+                <Link href={"/"}>
+                    <Image source={logo} style={styles.logo} />
+                </Link>
+
+                <Text style={styles.titulo}>
+                    Herbivoros
+                </Text>
+            </View>
 
 
-            <Text style={style.title}>
-                Catalogo
-            </Text>
+
 
             <FlatList
                 data={data}
-                contentContainerStyle={style.lista}
+                contentContainerStyle={styles.lista}
                 renderItem={({ item }) => (
 
-                    <TouchableOpacity style={style.card} onPress={() => router.push(`/dinossauro/${item.id}` as any)}>
-                        <Image style={style.avatar} source={item.urlImagem} />
+                    <TouchableOpacity style={styles.dinoCard} onPress={() => router.push(`/dinossauro/${item.id}` as any)}>
+
+                        <View style={styles.infos}>
+                            <Text style={styles.nome}>{item.nome}</Text>
+                        </View>
+
+                        <Image style={styles.imagem} source={item.urlImagem} />
 
                         <View>
 
-                            <View >
-                                <Text style={style.nome}>{item.nome}</Text>
-                            </View>
-                            <View>
-                                <Text style={style.anoEduracao}>{item.descricao}</Text>
 
-                                <Text style={style.genero}>{item.genero}</Text>
+                            <View style={styles.descricaoDiv}>
+                                <Text style={styles.descricao}>{item.descricao}</Text>
                             </View>
                         </View>
                     </TouchableOpacity>
                 )}
             />
-
         </ScrollView>
-    )
+    );
 }
 
-    const style = StyleSheet.create({
-
-    lista: {
-        padding: 16,
-        gap: 12
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: "#0F1711",
     },
 
-    card: {
-        flexDirection: "row",
+    header: {
+        justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#831010",
-        borderRadius: 4,
-        padding: 14,
-        gap: 14,
-
-
-
-
-
-    },
-    nome: {
-        fontSize: 24,
-        fontWeight: 700,
-        maxWidth: 400,
-                color:"#FFFF"
-
-
-
+        marginTop: 10,
+        marginBottom: 20
     },
 
-    anoEduracao: {
-        fontSize: 13,
-        marginTop: 5,
-               color:"#ffffff80"
-
-    },
-
-    genero: {
-        fontSize: 13,
-        marginTop: 8,
-        marginLeft: 10,
-        color:"#ffffff80"
-    },
-
-    avatar: {
-        width: 100,
+    logo: {
         height: 150,
-        borderRadius: 5,
-        borderWidth:3,
-        borderColor:"#FFF"
+        width: 200,
+    },
 
+    titulo: {
+        color: "#CBB071",
+        fontSize: 30,
+        marginBottom: 5,
+        marginTop: 15,
+        fontWeight: "700",
+    },
+
+    nome: {
+        color: "#E5D9C3",
+        fontSize: 19,
+        fontWeight: "600",
+        marginVertical: 10
+    },
+
+    infos: {
+        flexDirection: "row",
+        gap: 10
+    },
+
+    main: {
+        justifyContent: "center",
+        alignItems: "center"
+    },
+
+    dinoCard: {
+        backgroundColor: "#294B29",
+        width: 300,
+        height: 300,
+        borderRadius: 25,
+        alignItems: "center",
+        padding: 20,
+        borderWidth: 4,
+        borderColor: "#CBB071"
+    },
+
+    cardImage: {
+        padding: 10,
+        width: 180,
+        alignItems: "center",
+    },
+
+    imagem: {
+        width: "100%",
+        height: 150,
+        resizeMode: "contain"
     },
 
     centro: {
@@ -127,17 +147,28 @@ const router = useRouter()
         gap: 12
     },
 
-    title: {
-        color: "#564d4d",
-        fontSize: 24,
-        fontWeight: 700,
-        maxWidth: 400,
-        margin: 14
+    lista: {
+        padding: 16,
+        gap: 12,
+        alignItems: "center"
     },
 
-    bgcolor: {
-        backgroundColor: "#0000"
-    }
-})
+    icon: {
+        height: 20,
+        width: 20,
+        marginTop: 15,
+    },
 
-    
+    iconDiv: {
+        flexDirection: "row-reverse"
+    },
+
+    descricaoDiv: {
+        padding: 10
+    },
+
+    descricao: {
+        fontSize: 14,
+        color: "#E5D9C3"
+    }
+});
