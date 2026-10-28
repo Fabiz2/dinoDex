@@ -26,6 +26,10 @@ export default function Index() {
         </View>
       </Link>
 
+      <View style={styles.separador}>
+        <Text></Text>
+      </View>
+
       <Link href={"/herbivoros"} asChild>
         <View style={styles.containerHerb}>
           <View style={styles.herbCard}>
@@ -39,15 +43,21 @@ export default function Index() {
         </View>
       </Link>
 
-      <Link href={"/todos"} asChild>
+      <View style={styles.separador}>
+        <Text></Text>
+      </View>
+
+      <Link href={"/dinossauros"} asChild>
         <View style={styles.containerTodos}>
-          <View style={styles.todosCard}>
-            <Image source={todos} style={styles.dinoImageTodos} />
-          </View>
+          
 
           <View style={styles.dinoTextTodos}>
             <Text style={styles.titulo}>TODOS</Text>
             <Text style={styles.subtitulo}>Os dinossauros eram répteis bípedes ou quadrúpedes divididos entre carnívoros predadores com dentes e garras afiadas e herbívoros adaptados com armaduras, chifres ou pescoços longos para comer plantas.</Text>
+          </View>
+
+          <View style={styles.todosCard}>
+            <Image source={todos} style={styles.dinoImageTodos} />
           </View>
         </View>
       </Link>
@@ -77,40 +87,43 @@ const styles = StyleSheet.create({
   containerCarnivoro: {
     flexDirection: "row",
     marginTop: 50,
+    marginBottom: 25,
     alignContent: "space-between"
   },
 
   containerHerb: {
     flexDirection: "row-reverse",
-    marginTop: 50,
+    marginTop: 25,
+    marginBottom: 50,
     alignContent: "space-between"
   },
 
   carnivoroCard: {
     backgroundColor: "#294B29",
     width: 115,
-    height: 60,
+    height: 40,
     padding: 10,
     borderRadius: 5,
     margin: 10,
-    marginTop: 25,
+    marginTop: 60,
     flexDirection: "column-reverse",
   },
 
   containerTodos: {
     flexDirection: "column",
     alignItems: "center",
-    marginTop: 50
+    marginTop: 25,
+    marginBottom: 50,
   },
 
   todosCard: {
     backgroundColor: "#294B29",
     width: 200,
-    height: 60,
+    height: 40,
     padding: 10,
     borderRadius: 5,
     margin: 10,
-    marginTop: 25,
+    marginTop: 60,
     flexDirection: "column-reverse",
     alignItems: "center"
   },
@@ -118,11 +131,11 @@ const styles = StyleSheet.create({
   herbCard: {
     backgroundColor: "#294B29",
     width: 115,
-    height: 60,
+    height: 40,
     padding: 10,
     borderRadius: 5,
     margin: 10,
-    marginTop: 25,
+    marginTop: 60,
     flexDirection: "column-reverse",
   },
 
@@ -139,14 +152,14 @@ const styles = StyleSheet.create({
 
   titulo: {
     color: "#CBB071",
-    fontSize: 20,
-    textDecorationLine: "underline",
+    fontSize: 25,
+    fontWeight: "bold",
     marginBottom: 5
   },
 
   subtitulo: {
     color: "#E5D9C3",
-    fontSize: 10
+    fontSize: 11
   },
 
   dinoImageTodos: {
@@ -154,8 +167,16 @@ const styles = StyleSheet.create({
     width: 220
   },
 
-  dinoTextTodos:{
+  dinoTextTodos: {
     alignItems: "center",
     marginLeft: 15,
+  },
+
+  separador:{
+    borderWidth: 1,
+    borderColor: "#D9D9D9",
+    marginBottom: 25,
+    marginLeft: 100,
+    marginRight: 100
   }
 });
